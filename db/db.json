@@ -1,6 +1,10 @@
 [
     {
-        "title":"Test Title",
-        "text":"Test text"
+        "title":"Go to supermarket",
+        "text":"Get milk and bread"
+    },
+    {
+        "title":"Call doctor",
+        "text":"Set up appointment for physical exam in September"
     }
 ]
