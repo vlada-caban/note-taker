@@ -41,12 +41,28 @@ app.post("/api/notes", (req, res) => {
       body: newNote,
     };
 
+    let savedNotes = notes;
+    // console.log(savedNotes);
+    savedNotes.push(newNote);
+    // console.log(savedNotes);
+
+    fs.writeFile(`./db/db.json`, JSON.stringify(savedNotes), (err) =>
+      err
+        ? console.error(err)
+        : console.log(
+            `New note successfully saved`
+          )
+    );
+
     // const noteString = JSON.stringify(newNote);
     // console.log(noteString);
     // let existingNotes = JSON.stringify(notes);
+    // let arrayOfNotes = eval(existingNotes)
     // console.log(existingNotes);
-    // existingNotes.push(noteString);
-    // console.log(existingNotes);
+    // console.log(arrayOfNotes);
+
+    // arrayOfNotes.push(noteString);
+    // console.log(arrayOfNotes);
 
     console.log(response);
     res.status(201).json(response);
