@@ -52,31 +52,6 @@ app.post("/api/notes", (req, res) => {
 
   res.status(201).json(response);
 
-  //old code
-  // Checking if all the required properties are present
-  // if (title && text) {
-  //   const newNote = {
-  //     title,
-  //     text,
-  //     id: uuidv4(),
-  //   };
-
-  //   const response = {
-  //     status: "success",
-  //     body: newNote,
-  //   };
-
-  //   notes.push(newNote);
-
-  //   fs.writeFile("./db/db.json", JSON.stringify(notes), (err) =>
-  //     err ? console.error(err) : console.log("New note successfully saved")
-  //   );
-
-  //   console.log(response);
-  //   res.status(201).json(response);
-  // } else {
-  //   res.status(500).json("Error in saving the note");
-  // }
 });
 
 //function to delete a note
@@ -96,6 +71,25 @@ app.delete("/api/notes/:id", (req, res) => {
 
   res.status(200).json({ msg: "Successfully deleted" });
 });
+
+//function to update a note
+app.put("/api/notes/:id", (req, res) => {
+  const id = req.params.id;
+
+  const indexToUpdate = notes.findIndex((note) => note.id === id);
+  if (indexToUpdate === -1) {
+    return res.status(500).json({msg: "Note is not found"});
+  }
+  notes[indexToUpdate] = req.body;
+  console.log(notes);
+
+  fs.writeFile("./db/db.json", JSON.stringify(notes), (err) =>
+    err ? console.error(err) : console.log("Note updated")
+  );
+
+  res.status(200).json({ msg: "Successfully updated" });
+});
+
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/index.html"));
