@@ -13,7 +13,7 @@
 
 ## Usage
 
-Link to deployed application: 
+Link to deployed application: https://enigmatic-citadel-42801.herokuapp.com/
 
 User is able to add a new note, review and update existing note by selecting from left hand side, and delete note by clicking delete icon next to the note. 
 
